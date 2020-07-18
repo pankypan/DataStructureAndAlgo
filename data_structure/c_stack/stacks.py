@@ -1,6 +1,6 @@
 # utf-8
 """
-Stack based on linked list
+stack based on linked list
 """
 
 

@@ -75,7 +75,7 @@ def remove_nth_from_end(head: Node, n: int) -> Optional[Node]:
     return head
 
 
-# Find the middle node of this LinkedList
+# Find the middle node of this linked_list
 # 找到中间结点
 def find_middle_node(head: Node) -> Optional[Node]:
     slow, fast = head, head

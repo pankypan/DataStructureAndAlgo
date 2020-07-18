@@ -10,7 +10,7 @@
 
 import sys
 
-from c_Stack.stacks import LinkedStack
+from data_structure.c_stack.stacks import LinkedStack
 
 sys.path.append('stacks.py')
 

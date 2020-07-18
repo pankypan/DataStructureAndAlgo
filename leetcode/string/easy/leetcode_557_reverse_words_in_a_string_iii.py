@@ -5,4 +5,4 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.reverseWords("Let's take LeetCode contest"))
+    print(s.reverseWords("Let's take leetcode contest"))
