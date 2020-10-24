@@ -1,3 +1,10 @@
+"""
+LeetCode
+206
+easy
+"""
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -18,7 +25,7 @@ class Solution:
             cur.next, prev, cur = prev, cur, cur.next
         return prev
 
-    def reverse_list_II(self, head:ListNode) -> ListNode:
+    def reverse_list_II(self, head: ListNode) -> ListNode:
         """Use recursion"""
         if not head or not head.next:
             return head
