@@ -1,7 +1,8 @@
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+"""
+https://leetcode-cn.com/problems/remove-duplicate-node-lcci/
+面试题 02.01 easy
+"""
+from linked_list.common_functions import ListNode, get_linked_list
 
 
 class Solution:
@@ -57,23 +58,31 @@ class Solution:
             p = p.next
         return head
 
+    def removeDuplicateNodes(self, head: ListNode) -> ListNode:
+        """使用 哈希表 dict"""
+        recorder_dict = {}
+        if not head:
+            return head
+
+        pre, cur = ListNode(None), head
+        pre.next = cur
+        while cur:
+            if recorder_dict.get(cur.val):
+                temp = cur.next
+                cur.next = None
+                pre.next = temp
+
+                cur = temp
+                continue
+            else:
+                recorder_dict[cur.val] = cur
+
+            pre = cur
+            cur = cur.next
+        return head
+
 
 if __name__ == '__main__':
-    ll = [1, 3, 1, 4, 5, 5, 7]
-    list_node_lis = [ListNode(i) for i in ll]
-    for i, node in enumerate(list_node_lis):
-        if i == len(ll) - 1:
-            break
-        node.next = list_node_lis[i + 1]
+    s = Solution()
+    s.removeDuplicateNodes(get_linked_list([1, 2, 3, 3, 2, 1]))
 
-    hd = list_node_lis[0]
-    while hd:
-        print(hd.val, end='->')
-        hd = hd.next
-
-    solution = Solution()
-    hd = solution.remove_duplicate_2(list_node_lis[0])
-    print('\n')
-    while hd:
-        print(hd.val, end='->')
-        hd = hd.next

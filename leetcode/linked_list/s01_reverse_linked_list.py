@@ -1,14 +1,8 @@
 """
-LeetCode
-206
-easy
+https://leetcode-cn.com/problems/reverse-linked-list/
+leetcode 206 easy
 """
-
-
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+from linked_list.common_functions import ListNode
 
 
 class Solution:
@@ -33,3 +27,7 @@ class Solution:
         head.next.next = head
         head.next = None
         return N
+
+
+if __name__ == "__main__":
+    pass

@@ -1,14 +1,8 @@
 """
-LeetCode
-2
-medium
+https://leetcode-cn.com/problems/add-two-numbers/
+leetcode 2 medium
 """
-
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from linked_list.common_functions import ListNode
 
 
 class Solution:

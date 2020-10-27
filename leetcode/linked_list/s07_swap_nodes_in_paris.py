@@ -1,3 +1,7 @@
+"""
+https://leetcode-cn.com/problems/swap-nodes-in-pairs/
+leetcode 24 medium
+"""
 from linked_list.common_functions import ListNode, get_linked_list
 
 

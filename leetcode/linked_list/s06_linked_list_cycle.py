@@ -1,3 +1,7 @@
+"""
+https://leetcode-cn.com/problems/linked-list-cycle/
+leetcode 141 easy
+"""
 from linked_list.common_functions import ListNode, get_linked_list
 
 
