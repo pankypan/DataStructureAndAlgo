@@ -27,6 +27,9 @@ class Queue:
 
     def pop(self):
         if self.rear > self.front:
+            res = self.arr[self.front]
             self.front += 1
+            return res
         else:
             print("空队列")
+            return None

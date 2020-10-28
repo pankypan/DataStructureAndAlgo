@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/remove-duplicate-node-lcci/
 面试题 02.01 easy
 """
-from linked_list.common_functions import ListNode, get_linked_list
+from basic01_linked_list.common_functions import ListNode, get_linked_list
 
 
 class Solution:

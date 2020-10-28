@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
 leetcode 83 easy
 """
-from linked_list.common_functions import ListNode, get_linked_list
+from basic01_linked_list.common_functions import ListNode, get_linked_list
 
 
 class Solution:

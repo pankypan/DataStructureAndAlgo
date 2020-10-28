@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/merge-two-sorted-lists/
 leetcode 21 easy
 """
-from linked_list.common_functions import ListNode
+from basic01_linked_list.common_functions import ListNode
 
 
 class Solution:

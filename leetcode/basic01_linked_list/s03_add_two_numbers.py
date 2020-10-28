@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/add-two-numbers/
 leetcode 2 medium
 """
-from linked_list.common_functions import ListNode
+from basic01_linked_list.common_functions import ListNode
 
 
 class Solution:

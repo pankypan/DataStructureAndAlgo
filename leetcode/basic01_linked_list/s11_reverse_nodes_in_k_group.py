@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
 LeetCode 25 hard
 """
-from linked_list.common_functions import ListNode
+from basic01_linked_list.common_functions import ListNode
 
 
 class Solution:

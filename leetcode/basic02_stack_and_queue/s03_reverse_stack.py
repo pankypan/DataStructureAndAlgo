@@ -1,7 +1,7 @@
 """
 算法面试题
 """
-from stack_and_queue.my_stacks import Stack
+from basic02_stack_and_queue.my_stacks import Stack
 
 
 class Solution:

@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/implement-queue-using-stacks/
 leetcode 232 easy
 """
-from stack_and_queue.my_stacks import Stack
+from basic02_stack_and_queue.my_stacks import Stack
 
 
 class MyQueue:
