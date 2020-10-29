@@ -7,7 +7,8 @@ from basic01_linked_list.common_functions import ListNode
 
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        # 设置dummy 结点, 便于记录
+        """核心：dumpy结点便利记录"""
+        # 设置 dummy 结点, 便于记录
         pre_head = ListNode(None)
 
         cur = pre_head

@@ -7,6 +7,7 @@ from basic01_linked_list.common_functions import ListNode, get_linked_list
 
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
+        """核心：利用链表已排序特性"""
         if not head:
             return head
         cur = head

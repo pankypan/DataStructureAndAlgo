@@ -7,7 +7,7 @@ from basic01_linked_list.common_functions import ListNode, get_linked_list
 
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
-        """使用快慢指针"""
+        """核心：快慢指针"""
         if not head:
             return False
 

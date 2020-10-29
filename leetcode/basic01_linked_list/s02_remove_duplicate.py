@@ -6,44 +6,11 @@ from basic01_linked_list.common_functions import ListNode, get_linked_list
 
 
 class Solution:
-    @staticmethod
-    def remove_duplicate(head: ListNode) -> ListNode:
-        """
-        两次循环
-            时间复杂度：O(N^2)
-            空间复杂度: O(1)
-        :param head:
-        :return:
-        """
-        if head is None or head.next is None:
-            return head
-
-        outer_cur = head
-
-        while outer_cur is not None:
-            inner_pre = outer_cur
-            inner_cur = outer_cur.next
-            while inner_cur is not None:
-                if outer_cur.val == inner_cur.val:  # 结点值重复
-                    inner_pre.next = inner_cur.next
-                    temp = inner_cur.next
-                    inner_cur.next = None
-                    inner_cur = temp
-                    continue
-                inner_pre = inner_pre.next
-                inner_cur = inner_cur.next
-            outer_cur = outer_cur.next
-        return head
-
-    def remove_duplicate_2(self, head):
-        """
-        递归法
-        :param head:
-        :return:
-        """
+    def remove_duplicate(self, head):
+        """核心：递归法"""
         if head is None:
             return head
-        h_node = self.remove_duplicate_2(head.next)
+        h_node = self.remove_duplicate(head.next)
         head.next = h_node
 
         pre_p = head
@@ -59,7 +26,7 @@ class Solution:
         return head
 
     def removeDuplicateNodes(self, head: ListNode) -> ListNode:
-        """使用 哈希表 dict"""
+        """核心：dict"""
         recorder_dict = {}
         if not head:
             return head

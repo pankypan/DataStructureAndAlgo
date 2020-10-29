@@ -24,15 +24,14 @@ class Solution:
 
         while cur_p:
             cur_p.next = pre_p
+
             pre_p = cur_p
             cur_p = nex_p
             nex_p = cur_p.next if cur_p else None
         return pre_p
 
     def reorderList(self, head: ListNode) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
+        """核心：快慢指针找中间点；双指针翻转链表"""
         if not head: return
 
         # step 1: find middle

@@ -7,26 +7,30 @@ from basic01_linked_list.common_functions import ListNode
 
 class Solution:
     def reverse_list(self, head: ListNode) -> ListNode:
-        print(self)
-        # prev = None
-        # cur = head
-        prev, cur = None, head
-        while cur:
-            # temp = cur.next
-            # cur.next = prev
-            # prev = cur
-            # cur = temp
-            cur.next, prev, cur = prev, cur, cur.next
-        return prev
-
-    def reverse_list_II(self, head: ListNode) -> ListNode:
-        """Use recursion"""
+        """核心: 递归"""
         if not head or not head.next:
             return head
-        N = self.reverse_list_II(head.next)
+        n = self.reverse_list(head.next)
         head.next.next = head
         head.next = None
-        return N
+        return n
+
+    def reverseList(self, head: ListNode) -> ListNode:
+        """核心：三指针"""
+        if not head:
+            return head
+
+        prev, cur, nex = None, head, head.next
+        while cur:
+            # 翻转单个结点
+            cur.next = prev
+
+            # 移动三个指针
+            # prev = cur
+            # cur = nex
+            # nex = nex.next if nex else None
+            prev, cur, nex = cur, nex, nex.next if nex else None
+        return prev
 
 
 if __name__ == "__main__":

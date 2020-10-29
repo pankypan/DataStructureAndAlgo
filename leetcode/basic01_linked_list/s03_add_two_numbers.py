@@ -7,14 +7,13 @@ from basic01_linked_list.common_functions import ListNode
 
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        res = ListNode(0)
+        """核心：双指针"""
+        res = ListNode(None)
         if not l1 and not l2:
             return res
 
-        carry = 0
-        curr = res
-        p_l1 = l1
-        p_l2 = l2
+        carry = 0  # 进位数
+        curr, p_l1, p_l2 = res, l1, l2
         while p_l1 or p_l2 or carry:
             x = p_l1.val if p_l1 else 0
             y = p_l2.val if p_l2 else 0
