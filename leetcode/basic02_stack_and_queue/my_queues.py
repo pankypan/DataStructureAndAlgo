@@ -31,5 +31,4 @@ class Queue:
             self.front += 1
             return res
         else:
-            print("空队列")
             return None
