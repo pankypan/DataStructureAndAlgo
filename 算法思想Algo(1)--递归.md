@@ -76,7 +76,7 @@ def fib(n):
 
 ### 画出递归执行树
 
-![fib_recursion](assets/fib_recursion.jpg)
+![fib_recursion](assets/1.jpg)
 
 
 
