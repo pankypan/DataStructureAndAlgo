@@ -7,7 +7,7 @@ class TreeNode:
 
 
 class Solution:
-    def is_valid_bst(self, root: TreeNode) -> bool:
+    def isValidBST(self, root: TreeNode) -> bool:
         return self.check_bst(root, float('-INF'), float('INF'))
 
     def check_bst(self, root: TreeNode, min_val, max_val) -> bool:

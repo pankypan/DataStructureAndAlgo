@@ -7,15 +7,15 @@ class TreeNode:
 
 
 class Solution:
-    def max_depth(self, root: TreeNode) -> int:
+    def maxDepth(self, root: TreeNode) -> int:
         # base case
         if root is None:
             return 0
 
-        return max(self.max_depth(root.left), self.max_depth(root.right)) + 1
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 
     @staticmethod
-    def max_depth2(root: TreeNode) -> int:
+    def maxDepth2(root: TreeNode) -> int:
         max_depth = 0
         if root is None:
             return max_depth

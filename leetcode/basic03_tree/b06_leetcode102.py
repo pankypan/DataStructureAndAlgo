@@ -10,7 +10,7 @@ class TreeNode:
 
 class Solution:
     @staticmethod
-    def level_order(root: TreeNode) -> List[List[int]]:
+    def levelOrder(root: TreeNode) -> List[List[int]]:
         """
         BFS
         :param root:
@@ -40,7 +40,7 @@ class Solution:
             res_lis.append(temp_lis)
         return res_lis
 
-    def level_order2(self, root: TreeNode) -> List[List[int]]:
+    def levelOrder2(self, root: TreeNode) -> List[List[int]]:
         """
         DFS
         :param root:

@@ -7,16 +7,16 @@ class TreeNode:
 
 
 class Solution:
-    def search_bst(self, root: TreeNode, val: int) -> TreeNode:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
         if root is None:
             return root
 
         if val == root.val:
             return root
         elif val > root.val:
-            return self.search_bst(root.right, val)
+            return self.searchBST(root.right, val)
         elif val < root.val:
-            return self.search_bst(root.left, val)
+            return self.searchBST(root.left, val)
 
 
 if __name__ == '__main__':
