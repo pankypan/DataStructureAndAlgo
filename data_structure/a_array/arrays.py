@@ -21,7 +21,7 @@ class SortedArray:
             return
         # 数组已满
         if self._size == self._capacity:
-            print('This array is full!')
+            print('This basic04_array is full!')
             return
         # 倒序遍历数组，移动后面的元素，直到找到插入位置
         for i in range(self._size - 1, -1, -1):

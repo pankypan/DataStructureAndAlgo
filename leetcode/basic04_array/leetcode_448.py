@@ -1,4 +1,4 @@
-# find all numbers disappeared in an array
+# find all numbers disappeared in an basic04_array
 
 
 class Solution:
