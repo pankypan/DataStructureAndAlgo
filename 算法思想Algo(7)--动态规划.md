@@ -232,7 +232,7 @@ class Solution:
         if n == 1:
             return 1
 
-        # 初始化 dp 数组
+        # 初始化 dp_and_recursion 数组
         dp = [0] * (n + 1)
 
         # base case
