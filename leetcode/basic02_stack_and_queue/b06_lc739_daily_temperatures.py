@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/daily-temperatures/
-leetcode 739 medium
-"""
+# https://leetcode-cn.com/problems/daily-temperatures/
 from typing import List
 
 from basic02_stack_and_queue.my_stacks import Stack

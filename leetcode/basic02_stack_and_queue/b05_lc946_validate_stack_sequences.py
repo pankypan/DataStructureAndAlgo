@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/validate-stack-sequences/
-leetcode 946 medium
-"""
+# https://leetcode-cn.com/problems/validate-stack-sequences/
 from basic02_stack_and_queue.my_stacks import Stack
 
 

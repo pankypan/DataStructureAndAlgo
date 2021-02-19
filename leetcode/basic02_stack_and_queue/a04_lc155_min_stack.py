@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/min-stack/
-leetcode 155 easy
-"""
+# https://leetcode-cn.com/problems/min-stack/
 from basic02_stack_and_queue.my_stacks import Stack
 
 

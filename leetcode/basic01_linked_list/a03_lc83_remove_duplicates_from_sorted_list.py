@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
-leetcode 83 easy
-"""
+# https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
 from basic01_linked_list.common_functions import ListNode, get_linked_list
 
 

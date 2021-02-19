@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/next-greater-element-i/
-leetcode 496 easy
-"""
+# https://leetcode-cn.com/problems/next-greater-element-i/
 from typing import List
 
 from basic02_stack_and_queue.my_stacks import Stack

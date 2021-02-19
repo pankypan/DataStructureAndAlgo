@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/reverse-linked-list/
-leetcode 206 easy
-"""
+# https://leetcode-cn.com/problems/reverse-linked-list/
 from basic01_linked_list.common_functions import ListNode
 
 

@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/reorder-list/
-leetcode 143 medium
-"""
+# https://leetcode-cn.com/problems/reorder-list/
 from basic01_linked_list.common_functions import ListNode
 
 

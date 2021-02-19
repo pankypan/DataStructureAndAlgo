@@ -1,8 +1,5 @@
-"""
-https://leetcode-cn.com/problems/linked-list-cycle/
-leetcode 141 easy
-"""
-from basic01_linked_list.common_functions import ListNode, get_linked_list
+# https://leetcode-cn.com/problems/linked-list-cycle/
+from basic01_linked_list.common_functions import ListNode
 
 
 class Solution:

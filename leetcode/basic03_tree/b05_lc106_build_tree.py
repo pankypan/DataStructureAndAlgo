@@ -1,8 +1,4 @@
-"""
-https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
-leetcode 106 medium
-"""
-# Definition for a binary tree node.
+# https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
 from typing import List
 
 

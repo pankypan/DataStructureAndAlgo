@@ -1,4 +1,4 @@
-# Definition for a binary tree node.
+# https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
 class TreeNode:
     def __init__(self, x):
         self.val = x

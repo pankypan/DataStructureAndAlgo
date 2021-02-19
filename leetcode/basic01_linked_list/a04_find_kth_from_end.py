@@ -1,8 +1,5 @@
-"""
-https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
-剑指Offer 22 easy
-"""
-from basic01_linked_list.common_functions import ListNode, get_linked_list, read_linked_list
+# https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
+from basic01_linked_list.common_functions import ListNode, get_linked_list
 
 
 class Solution:

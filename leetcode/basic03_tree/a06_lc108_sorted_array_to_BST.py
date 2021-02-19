@@ -1,4 +1,4 @@
-# Definition for a binary tree node.
+# https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/
 from typing import List
 
 

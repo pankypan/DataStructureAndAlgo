@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/flatten-a-multilevel-doubly-linked-list/
-leetcode 430 medium
-"""
+# https://leetcode-cn.com/problems/flatten-a-multilevel-doubly-linked-list/
 
 
 class Node:

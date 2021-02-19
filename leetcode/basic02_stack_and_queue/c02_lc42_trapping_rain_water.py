@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/trapping-rain-water/
-leetcode 42 hard
-"""
+# https://leetcode-cn.com/problems/trapping-rain-water/
 from typing import List
 
 

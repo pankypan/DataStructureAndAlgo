@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
-leetcode 84 hard
-"""
+# https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
 from basic02_stack_and_queue.my_stacks import Stack
 from typing import List
 

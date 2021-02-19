@@ -1,8 +1,5 @@
-"""
-https://leetcode-cn.com/problems/swap-nodes-in-pairs/
-leetcode 24 medium
-"""
-from basic01_linked_list.common_functions import ListNode, get_linked_list
+# https://leetcode-cn.com/problems/swap-nodes-in-pairs/
+from basic01_linked_list.common_functions import ListNode
 
 
 class Solution:

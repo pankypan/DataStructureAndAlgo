@@ -1,8 +1,4 @@
-"""
-https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
-leetcode 105 medium
-"""
-# Definition for a binary tree node.
+# https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
 from typing import List
 
 

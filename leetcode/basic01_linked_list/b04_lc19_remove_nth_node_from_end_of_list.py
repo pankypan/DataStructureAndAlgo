@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
-leetcode 19 medium
-"""
+# https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
 from basic01_linked_list.common_functions import ListNode
 
 

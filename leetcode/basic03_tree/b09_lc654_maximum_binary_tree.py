@@ -1,8 +1,4 @@
-"""
-https://leetcode-cn.com/problems/maximum-binary-tree/
-leetcode 654 medium
-"""
-# Definition for a binary tree node.
+# https://leetcode-cn.com/problems/maximum-binary-tree/
 from typing import List
 
 

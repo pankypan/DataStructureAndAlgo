@@ -1,6 +1,4 @@
-"""
-算法面试题
-"""
+"""算法面试题"""
 from basic02_stack_and_queue.my_stacks import Stack
 
 

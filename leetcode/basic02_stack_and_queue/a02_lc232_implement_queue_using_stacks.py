@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/implement-queue-using-stacks/
-leetcode 232 easy
-"""
+# https://leetcode-cn.com/problems/implement-queue-using-stacks/
 from basic02_stack_and_queue.my_stacks import Stack
 
 

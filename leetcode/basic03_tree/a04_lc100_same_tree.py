@@ -1,10 +1,4 @@
-"""
-https://leetcode-cn.com/problems/same-tree/
-leetcode 100 easy
-"""
-# Definition for a binary tree node.
-
-
+# https://leetcode-cn.com/problems/same-tree/
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val

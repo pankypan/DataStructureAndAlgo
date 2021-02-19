@@ -1,11 +1,4 @@
-"""
-https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/
-leetcode 116 medium
-"""
-
-# Definition for a Node.
-
-
+# https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/
 class Node:
     def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
         self.val = val

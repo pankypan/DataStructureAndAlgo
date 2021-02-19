@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/merge-two-sorted-lists/
-leetcode 21 easy
-"""
+# https://leetcode-cn.com/problems/merge-two-sorted-lists/
 from basic01_linked_list.common_functions import ListNode
 
 

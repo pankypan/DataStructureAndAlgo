@@ -1,11 +1,4 @@
-"""
-https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/
-leetcode 114 medium
-"""
-
-# Definition for a binary tree node.
-
-
+# https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val

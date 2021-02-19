@@ -1,7 +1,4 @@
-"""
-https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
-LeetCode 25 hard
-"""
+# https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
 from basic01_linked_list.common_functions import ListNode
 
 

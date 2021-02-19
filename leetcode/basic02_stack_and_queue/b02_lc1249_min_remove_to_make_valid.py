@@ -1,3 +1,6 @@
+# https://leetcode-cn.com/problems/minimum-remove-to-make-valid-parentheses/
+
+
 class Solution:
     def min_remove_to_make_valid(self, s: str) -> str:
         mapping = {'(': ')'}

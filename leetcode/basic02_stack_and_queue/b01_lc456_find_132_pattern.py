@@ -1,3 +1,6 @@
+# https://leetcode-cn.com/problems/132-pattern/
+
+
 class Solution:
     def find_132_pattern(self, nums: list) -> bool:
         n_length = len(nums)

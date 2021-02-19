@@ -1,5 +1,5 @@
+# https://leetcode-cn.com/problems/single-number/
 from typing import List
-
 """
 异或操作的性质：
     1.任意一个数和0异或仍然为自己：  x ^ 0 = x

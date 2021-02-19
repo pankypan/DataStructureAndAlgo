@@ -1,4 +1,4 @@
-# Definition for a binary tree node.
+# https://leetcode-cn.com/problems/search-in-a-binary-search-tree/
 class TreeNode:
     def __init__(self, x):
         self.val = x
