@@ -1,4 +1,4 @@
-# binary_search https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
+# other_binary_search https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
 from typing import List
 
 

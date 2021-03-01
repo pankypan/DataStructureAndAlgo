@@ -1,4 +1,4 @@
-# dp_and_recursion https://leetcode-cn.com/problems/partition-to-k-equal-sum-subsets/
+# basic08_dp_and_recursion https://leetcode-cn.com/problems/partition-to-k-equal-sum-subsets/
 from typing import List
 
 

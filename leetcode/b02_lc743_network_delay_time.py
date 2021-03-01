@@ -1,4 +1,4 @@
-# graph https://leetcode-cn.com/problems/network-delay-time/
+# basic09_graph https://leetcode-cn.com/problems/network-delay-time/
 from typing import List
 
 

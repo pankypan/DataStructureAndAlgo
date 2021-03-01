@@ -1,4 +1,4 @@
-# segment_tree https://leetcode-cn.com/problems/range-sum-query-mutable/
+# other_segment_tree https://leetcode-cn.com/problems/range-sum-query-mutable/
 from typing import List
 
 
