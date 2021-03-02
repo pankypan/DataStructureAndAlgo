@@ -7,28 +7,28 @@ class Solution:
     def __init__(self):
         self.ans, self.choices, self.track = list(), list(), list()
 
-    def backtracking(self):
+    def backtracking(self, track: list):
         # base case
-        if len(self.track) == len(self.choices):
-            self.ans.append(deepcopy(self.track))
+        if len(track) == len(self.choices):
+            self.ans.append(deepcopy(track))
             return
 
         for choice in self.choices:
             # 排除不合法的选择
-            if choice in self.track: continue
+            if choice in track: continue
             # 选择
-            self.track.append(choice)
+            track.append(choice)
             # 进入下一层决策树
-            self.backtracking()
+            self.backtracking(track)
             # 撤销选择
-            self.track.pop()
+            track.pop()
 
     def permute(self, nums: List[int]) -> List[List[int]]:
         # 初始化，挂载数据到对象空间
-        self.ans, self.choices, self.track = list(), nums, list()
+        self.ans, self.choices = list(), nums
 
         # 回溯
-        self.backtracking()
+        self.backtracking(list())
         return self.ans
 
 

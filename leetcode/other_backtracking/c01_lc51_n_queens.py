@@ -4,7 +4,7 @@ from typing import List
 
 class Solution:
     def __init__(self):
-        self.board, self.ans = list(), list()
+        self.board, self.ans = None, None
 
     def init_board(self, n):
         self.board = [['.' for _ in range(n)] for _ in range(n)]
@@ -36,29 +36,30 @@ class Solution:
 
         return True
 
-    def backtracking(self, row: int):
+    def backtracking(self, row: int, board: list):
         """
         路径：board 中小于 row 的那些行都已经成功放置了皇后
         选择列表：第 row 行的所有列都是放置皇后的选择
         结束条件：row 超过 board 的最后一行
         :param row:
+        :param board:
         :return:
         """
         # 结束条件
-        if row == len(self.board):
-            self.ans.append([''.join(row) for row in self.board])
+        if row == len(board):
+            self.ans.append([''.join(row) for row in board])
             return
 
-        n_col = len(self.board[row])
+        n_col = len(board[row])
         for col in range(n_col):
             # 排除不合法选择
             if not self.is_valid(row, col): continue
             # 做选择
-            self.board[row][col] = 'Q'
+            board[row][col] = 'Q'
             # 进入下一层决策
-            self.backtracking(row + 1)
+            self.backtracking(row + 1, board)
             # 撤销选择
-            self.board[row][col] = '.'
+            board[row][col] = '.'
 
     def solveNQueens(self, n: int) -> List[List[str]]:
         self.ans = list()
@@ -66,7 +67,7 @@ class Solution:
         self.init_board(n)
 
         # 回溯
-        self.backtracking(0)
+        self.backtracking(0, self.board)
         return self.ans
 
 
