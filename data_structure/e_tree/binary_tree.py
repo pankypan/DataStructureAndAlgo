@@ -6,107 +6,98 @@ class TreeNode:
 
 
 class BinaryTree(object):
-    def __init__(self, root):
-        self.root = root
-        self.queue = []  # 用于二叉树追加结点，记录作用
+    def __init__(self, item_lis: list):
+        self.root = TreeNode(item_lis[0])
+        self.queue = list()  # 用于二叉树追加结点，记录作用
+        self.queue.append(self.root)
 
-    def add(self, item):
-        """
-        按层序方式给二叉树追加结点，形成完全二叉树
-        :param item:
-        :return:
-        """
+        # 实例化结点，并构造二叉树
+        for item in item_lis[1:]:
+            self.add_node(item)
+
+        # 重置 None 结点
+        self.set_none_node_as_none(self.root)
+
+    def add_node(self, item):
         new_node = TreeNode(item)
-        if self.root is None:
-            self.root = new_node
-            self.queue.append(self.root)
+
+        cur_node = self.queue[0]
+
+        if cur_node.left is None:
+            cur_node.left = new_node
+            self.queue.append(new_node)
         else:
-            tree_node = self.queue[0]
-            if tree_node.left is None:
-                tree_node.left = new_node
-                self.queue.append(tree_node.left)
-            else:
-                tree_node.right = new_node
-                self.queue.append(tree_node.right)
-                self.queue.pop(0)
+            cur_node.right = new_node
+            self.queue.append(new_node)
+            self.queue.pop(0)
 
-    def pre_traversal_recursion(self):
-        """
-        前序遍历，递归
-        :return:
-        """
-        ret = []
+    def set_none_node_as_none(self, root: TreeNode):
+        if not root: return
 
-        def traversal(node):
-            if not node: return
-            ret.append(node.val)
-            traversal(node.left)
-            traversal(node.right)
-        traversal(self.root)
-        return ret
+        if root.left and root.left.val is None:
+            root.left = None
+        if root.right and root.right.val is None:
+            root.right = None
 
-    def in_traversal_recursion(self):
-        """
-        中序遍历，递归
-        :return:
-        """
-        ret = []
+        self.set_none_node_as_none(root.left)
+        self.set_none_node_as_none(root.right)
 
-        def traversal(root):
-            if not root: return
-            traversal(root.left)
-            ret.append(root.val)
-            traversal(root.right)
-        traversal(self.root)
-        return ret
 
-    def post_traversal_recursion(self):
-        """
-        后序遍历，递归
-        :return:
-        """
-        ret = []
+class TreeTraversal(object):
+    def __init__(self):
+        self.ret = list()
 
-        def traversal(root):
-            if not root: return
-            traversal(root.left)
-            traversal(root.right)
-            ret.append(root.val)
-        traversal(self.root)
-        return ret
+    def preorder(self, root: TreeNode):
+        if not root: return
 
-    def pre_traversal(self):
-        ret = []
-        node = self.root
+        self.ret.append(root.val)
+        self.preorder(root.left)
+        self.preorder(root.right)
+
+    def inorder(self, root: TreeNode):
+        if not root: return
+
+        self.inorder(root.left)
+        self.ret.append(root.val)
+        self.inorder(root.right)
+
+    def postorder(self, root: TreeNode):
+        if not root: return
+
+        self.postorder(root.left)
+        self.postorder(root.right)
+        self.ret.append(root.val)
+
+    def pre_traversal(self, root: TreeNode):
+        self.ret.clear()
+
+        node = root
         if node is None: return
         stack = [node]
         while stack:
-            ret.append(node.val)
+            self.ret.append(node.val)
             if node.right is not None:
                 stack.append(node.right)
             if node.left is not None:
                 stack.append(node.left)
             node = stack.pop()
-        print(ret)
-        return ret
+        return self.ret
 
-    def in_traversal(self):
-        ret = []
+    def in_traversal(self, root: TreeNode):
+        self.ret.clear()
         stack = []
-        pos = self.root
+        pos = root
         while pos is not None or stack:
             if pos is not None:
                 stack.append(pos)
                 pos = pos.left
             else:
                 pos = stack.pop()
-                # print(pos.val)
-                ret.append(pos.val)
+                self.ret.append(pos.val)
                 pos = pos.right
-        print(ret)
-        return ret
+        return self.ret
 
-    def post_traversal(self):
+    def post_traversal(self, root: TreeNode):
         """
         后序打印二叉树（非递归）
         使用两个栈结构
@@ -116,8 +107,8 @@ class BinaryTree(object):
         最后第二个栈依次出栈
         :return:
         """
-        ret = []
-        node = self.root
+        self.ret.clear()
+        node = root
         stack = [node]
         stack2 = []
         while stack:
@@ -128,36 +119,29 @@ class BinaryTree(object):
             if node.right is not None:
                 stack.append(node.right)
         while stack2:
-            # print(stack2.pop().val)
-            ret.append(stack2.pop().val)
-        print(ret)
-        return ret
+            self.ret.append(stack2.pop().val)
+        return self.ret
 
-    def level_traversal(self):
-        ret = []
-        node = self.root
+    def level_traversal(self, root: TreeNode):
+        self.ret.clear()
+
+        node = root
         if node is None: return
         queue = [node]
         while queue:
             node = queue.pop(0)
             # print(node.val)
-            ret.append(node.val)
+            self.ret.append(node.val)
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        print(ret)
-        return ret
+        return self.ret
 
 
 if __name__ == '__main__':
-    b_tree = BinaryTree(None)
-    for i in [1, 2, 3, 4, 5, 6, 7]:
-        b_tree.add(i)
-    b_tree.pre_traversal_recursion()
-    b_tree.pre_traversal()
-    b_tree.in_traversal_recursion()
-    b_tree.in_traversal()
-    b_tree.post_traversal_recursion()
-    b_tree.post_traversal()
-    b_tree.level_traversal()
+    traversal = TreeTraversal()
+
+    b_tree = BinaryTree([1, 2, None, 4])
+    print(traversal.level_traversal(b_tree.root))
+
