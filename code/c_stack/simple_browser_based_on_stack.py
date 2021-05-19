@@ -1,7 +1,7 @@
 # utf-8
 import sys
 
-from data_structure.c_stack.stacks import LinkedStack
+from code.c_stack.stacks import LinkedStack
 
 sys.path.append('stacks.py')
 
