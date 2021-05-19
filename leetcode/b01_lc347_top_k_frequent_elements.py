@@ -1,4 +1,4 @@
-# hash_table https://leetcode-cn.com/problems/top-k-frequent-elements/
+# basicDS05_hash_table https://leetcode-cn.com/problems/top-k-frequent-elements/
 from typing import List
 
 

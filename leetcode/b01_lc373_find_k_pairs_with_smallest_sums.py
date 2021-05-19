@@ -1,4 +1,4 @@
-# heap https://leetcode-cn.com/problems/find-k-pairs-with-smallest-sums/
+# basicDS07_heap https://leetcode-cn.com/problems/find-k-pairs-with-smallest-sums/
 from typing import List
 
 

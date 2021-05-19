@@ -1,4 +1,4 @@
-# other_binary_search https://leetcode-cn.com/problems/swim-in-rising-water/
+# commonAlgo04_binary_search https://leetcode-cn.com/problems/swim-in-rising-water/
 from typing import List
 
 

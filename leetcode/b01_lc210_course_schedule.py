@@ -1,4 +1,4 @@
-# basic09_graph https://leetcode-cn.com/problems/course-schedule-ii/
+# basicDS08_graph https://leetcode-cn.com/problems/course-schedule-ii/
 from typing import List
 
 

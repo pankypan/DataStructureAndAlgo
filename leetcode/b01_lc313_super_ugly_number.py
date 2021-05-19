@@ -1,4 +1,4 @@
-# basic08_dp_and_recursion https://leetcode-cn.com/problems/super-ugly-number/
+# commonAlgo05_dp_and_recursion https://leetcode-cn.com/problems/super-ugly-number/
 from typing import List
 
 

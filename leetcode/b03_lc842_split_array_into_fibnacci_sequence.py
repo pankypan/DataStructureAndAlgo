@@ -1,4 +1,4 @@
-# greedy https://leetcode-cn.com/problems/split-array-into-fibonacci-sequence/
+# commonAlgo02_greedy https://leetcode-cn.com/problems/split-array-into-fibonacci-sequence/
 from typing import List
 
 

@@ -1,4 +1,4 @@
-# basic09_graph https://leetcode-cn.com/problems/redundant-connection/
+# basicDS08_graph https://leetcode-cn.com/problems/redundant-connection/
 from typing import List
 
 
