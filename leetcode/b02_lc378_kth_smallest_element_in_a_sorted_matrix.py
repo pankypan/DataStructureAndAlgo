@@ -1,4 +1,4 @@
-# basicDS07_heap https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/
+# basicDS07_binary_search https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/
 from typing import List
 
 

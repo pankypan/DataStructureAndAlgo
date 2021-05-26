@@ -1,4 +1,5 @@
 # https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
+import heapq
 
 
 class Solution:
@@ -12,9 +13,15 @@ class Solution:
         :param k:
         :return:
         """
-        import heapq
         hp = list()
-        pass
+
+        for i in range(k):
+            heapq.heappush(hp, nums[i])
+
+        for i in range(k, len(nums)):
+            if nums[i] > hp[0]:
+                heapq.heapreplace(hp, nums[i])
+        return hp[0]
 
 
 if __name__ == '__main__':
