@@ -1,4 +1,4 @@
-# commonAlgo03_dfs_and_bfs https://leetcode-cn.com/problems/max-area-of-island/
+# commonAlgo02_bfs https://leetcode-cn.com/problems/max-area-of-island/
 from typing import List
 
 

@@ -1,4 +1,4 @@
-# commonAlgo02_greedy https://leetcode-cn.com/problems/jump-game/
+# commonAlgo08_greedy https://leetcode-cn.com/problems/jump-game/
 from typing import List
 
 

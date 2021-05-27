@@ -1,4 +1,4 @@
-# commonAlgo03_dfs_and_bfs https://leetcode-cn.com/problems/binary-tree-right-side-view/
+# commonAlgo02_bfs https://leetcode-cn.com/problems/binary-tree-right-side-view/
 from typing import List
 
 
