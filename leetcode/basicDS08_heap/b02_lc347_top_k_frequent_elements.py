@@ -3,43 +3,34 @@ import heapq
 from typing import List
 
 
-class CompareObj(object):
-    def __init__(self, k, v):
-        self.k = k
-        self.v = v
-
-    def __lt__(self, other):
-        return self.v < other.v
-
-    def __gt__(self, other):
-        return self.v > other.v
-
-
 class Solution:
+    @staticmethod
+    def get_num_statics(nums) -> dict:
+        hash_table = dict()
+        for num in nums:
+            if num in hash_table:
+                hash_table[num] += 1
+            else:
+                hash_table[num] = 1
+        return hash_table
+
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        record_hash_table = dict()
-        res_heap = list()
+        hash_table = self.get_num_statics(nums)
 
-        for number in nums:
-            if number not in record_hash_table:
-                record_hash_table[number] = 1
-            else:
-                record_hash_table[number] += 1
-
+        priority_queue = list()
         count = 0
-        for key, val in record_hash_table.items():
-            item_obj = CompareObj(key, val)
+        for key, val in hash_table.items():
             if count < k:
-                heapq.heappush(res_heap, item_obj)
+                heapq.heappush(priority_queue, [val, key])
             else:
-                if res_heap[0] < item_obj:
-                    heapq.heapreplace(res_heap, item_obj)
+                if val > priority_queue[0][0]:
+                    heapq.heappop(priority_queue)
+                    heapq.heappush(priority_queue, [val, key])
             count += 1
-        return [item.k for item in res_heap]
+        return [item_lis[1] for item_lis in priority_queue]
 
 
 if __name__ == '__main__':
     s = Solution()
     print(s.topKFrequent([1, 1, 1, 2, 2, 3], 2))
     print(s.topKFrequent([1], 1))
-    pass

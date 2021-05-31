@@ -3,40 +3,32 @@ import heapq
 from typing import List
 
 
-class CompareObj(object):
-    def __init__(self, n1, n2):
-        self.n1 = n1
-        self.n2 = n2
-
-    def __lt__(self, other):
-        return sum([self.n1, self.n2]) < sum([other.n1, other.n2])
-
-    def __gt__(self, other):
-        return sum([self.n1, self.n2]) > sum([other.n1, other.n2])
-
-    def __eq__(self, other):
-        return (self.n1 + self.n2) == (other.n1 + other.n2)
-
-
 class Solution:
     def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
-        heap_lis = list()
+        length1, length2 = len(nums1), len(nums2)
+        priority_queue = list()
+        ret_lis = list()
 
-        count = 0
-        for n1 in nums1:
-            for n2 in nums2:
-                item = CompareObj(n1, n2)
-                if count < k:
-                    heapq.heappush(heap_lis, item)
-                else:
-                    if item < heap_lis[0] or item == heap_lis[0]:
-                        heapq.heapreplace(heap_lis, item)
-                count += 1
-        return [[item.n1, item.n2] for item in heap_lis]
+        def push_item(i, j):
+            if i < length1 and j < length2:
+                heapq.heappush(priority_queue, [nums1[i] + nums2[j], i, j])
+
+        # 从矩阵左上角开始
+        i, j = 0, 0
+        heapq.heappush(priority_queue, [nums1[i] + nums2[j], i, j])
+        while priority_queue and len(ret_lis) < k:
+            _, i, j = heapq.heappop(priority_queue)
+            ret_lis.append([nums1[i], nums2[j]])
+
+            # 每当将一对选择为输出结果时，该行中的下一对就会添加到当前选项的优先队列中
+            push_item(i, j + 1)
+            # 如果所选对是该行中的第一对，则将下一行中的第一对添加到队列中
+            if j == 0:
+                push_item(i + 1, j)
+        return ret_lis
 
 
 if __name__ == '__main__':
     s = Solution()
     print(s.kSmallestPairs([1, 7, 11], [2, 4, 6], 3))
     print(s.kSmallestPairs([1, 1, 2], [1, 2, 3], 2))
-    pass

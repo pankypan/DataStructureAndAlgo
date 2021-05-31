@@ -30,10 +30,6 @@
 
 ## Heap
 
-```python
-# 253, 624
-```
-
 ### [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
 
 #### 题目
@@ -90,7 +86,7 @@ class Solution:
 
 **最小堆**
 
-题目最终需要返回的是前 k*k* 个频率最大的元素，可以想到借助堆这种数据结构，对于 k*k* 频率之后的元素不用再去处理，进一步优化时间复杂度。
+题目最终需要返回的是前 `k`个频率最大的元素，可以想到借助堆这种数据结构，对于`k`频率之后的元素不用再去处理，进一步优化时间复杂度。
 
 ![2b27b1db106a53abe239c5be8e49a800522ab2f6637940cb556bcfe1232ff333-file_1561712388055](assets/2b27b1db106a53abe239c5be8e49a800522ab2f6637940cb556bcfe1232ff333-file_1561712388055.jpg)
 
@@ -107,7 +103,41 @@ class Solution:
 #### code
 
 ```python
+import heapq
+from typing import List
 
+
+class Solution:
+    @staticmethod
+    def get_num_statics(nums) -> dict:
+        hash_table = dict()
+        for num in nums:
+            if num in hash_table:
+                hash_table[num] += 1
+            else:
+                hash_table[num] = 1
+        return hash_table
+
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        hash_table = self.get_num_statics(nums)
+
+        priority_queue = list()
+        count = 0
+        for key, val in hash_table.items():
+            if count < k:
+                heapq.heappush(priority_queue, [val, key])
+            else:
+                if val > priority_queue[0][0]:
+                    heapq.heappop(priority_queue)
+                    heapq.heappush(priority_queue, [val, key])
+            count += 1
+        return [item_lis[1] for item_lis in priority_queue]
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.topKFrequent([1, 1, 1, 2, 2, 3], 2))
+    print(s.topKFrequent([1], 1))
 ```
 
 
@@ -133,8 +163,134 @@ class Solution:
 #### code
 
 ```python
+import heapq
+from typing import List
 
+
+class Solution:
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        length1, length2 = len(nums1), len(nums2)
+        priority_queue = list()
+        ret_lis = list()
+
+        def push_item(i, j):
+            if i < length1 and j < length2:
+                heapq.heappush(priority_queue, [nums1[i] + nums2[j], i, j])
+
+        # 从矩阵左上角开始
+        i, j = 0, 0
+        heapq.heappush(priority_queue, [nums1[i] + nums2[j], i, j])
+        while priority_queue and len(ret_lis) < k:
+            _, i, j = heapq.heappop(priority_queue)
+            ret_lis.append([nums1[i], nums2[j]])
+
+            # 每当将一对选择为输出结果时，该行中的下一对就会添加到当前选项的优先队列中
+            push_item(i, j + 1)
+            # 如果所选对是该行中的第一对，则将下一行中的第一对添加到队列中
+            if j == 0:
+                push_item(i + 1, j)
+        return ret_lis
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.kSmallestPairs([1, 7, 11], [2, 4, 6], 3))
+    print(s.kSmallestPairs([1, 1, 2], [1, 2, 3], 2))
 ```
+
+
+
+
+
+### [253. 会议室 II](https://leetcode-cn.com/problems/meeting-rooms-ii/)
+
+#### 题目
+
+![QQ截图20210530224351](assets/QQ截图20210530224351.png)
+
+
+
+#### 解题思路
+
+**优先队列：**
+
+我们无法按任意顺序处理给定的会议。处理会议的最基本方式是按其 `开始时间` 顺序排序，这也是我们采取的顺序。
+
+考虑下面的会议时间 `(1, 10), (2, 7), (3, 19), (8, 12), (10, 20), (11, 30) `。前一部分表示会议开始时间，后一部分表示结束时间。按照会议开始时间顺序考虑。图一展示了前三个会议，每个会议都由于冲突而需要新房间。
+
+![d5e14c60d0b9a34e86068f19af97760fbaa82e3b50541b77b79349ad4491c687-image](assets/d5e14c60d0b9a34e86068f19af97760fbaa82e3b50541b77b79349ad4491c687-image.png)
+
+后面的三个会议开始占用现有的房间。然而，最后的会议需要一个新房间。总而言之，我们需要四个房间来容纳所有会议。
+
+![f5b3fd59050269d34100d80f18ce9a8c0634c45c07041492e2aa1ca46e64c87b-image](assets/f5b3fd59050269d34100d80f18ce9a8c0634c45c07041492e2aa1ca46e64c87b-image.png)
+
+**算法：**
+
+1. 按照 开始时间 对会议进行排序。
+2. 初始化一个新的 最小堆，将第一个会议的**结束时间**加入到堆中。我们只需要记录会议的结束时间，告诉我们什么时候房间会空。
+3. 对每个会议，检查堆的最小元素（即堆顶部的房间）是否空闲。
+   1. 若房间空闲，则从堆顶拿出该元素，将其改为我们处理的会议的结束时间，加回到堆中。
+   2. 若房间不空闲。开新房间，并加入到堆中。
+4. 处理完所有会议后，堆的大小即为开的房间数量。这就是容纳这些会议需要的最小房间数。
+
+
+
+#### code
+
+```python
+import heapq
+from typing import List
+
+
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        # 按会议开始时间进行排序
+        intervals.sort(key=lambda item: item[0])
+
+        priority_queue = list()
+        heapq.heappush(priority_queue, intervals[0][1])
+
+        for i in range(1, len(intervals)):
+            meeting = intervals[i]
+            # meeting 完全大于堆顶 则 堆顶空闲
+            if meeting[0] >= priority_queue[0]:  # 房间空闲: meeting 的开始时间 大于堆顶的 结束时间
+                heapq.heappop(priority_queue)
+                heapq.heappush(priority_queue, meeting[1])
+            else:  # 房间不空闲
+                heapq.heappush(priority_queue, meeting[1])
+
+        return len(priority_queue)
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.minMeetingRooms([[1, 10], [2, 7], [3, 19], [8, 12], [10, 20], [11, 30]]))
+    print(s.minMeetingRooms([[0, 30], [5, 10], [15, 20]]))
+    print(s.minMeetingRooms([[7, 10], [2, 4]]))
+```
+
+
+
+
+
+### [624. 数组列表中的最大距离](https://leetcode-cn.com/problems/maximum-distance-in-arrays/)
+
+#### 题目
+
+![QQ截图20210530233232](assets/QQ截图20210530233232.png)
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+```python
+```
+
+
 
 
 
