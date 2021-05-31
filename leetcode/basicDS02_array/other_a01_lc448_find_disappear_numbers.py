@@ -1,4 +1,4 @@
-# find all numbers disappeared in an basicDS03_array
+# find all numbers disappeared in an basicDS02_array
 
 
 class Solution:

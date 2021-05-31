@@ -1,5 +1,5 @@
 # https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
-from basicDS02_linked_list.common_functions import ListNode, get_linked_list
+from basicDS03_linked_list.common_functions import ListNode, get_linked_list
 
 
 class Solution:

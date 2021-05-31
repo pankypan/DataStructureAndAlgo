@@ -1,5 +1,5 @@
 # 面试题02.01 https://leetcode-cn.com/problems/remove-duplicate-node-lcci/
-from basicDS02_linked_list.common_functions import ListNode, get_linked_list
+from basicDS03_linked_list.common_functions import ListNode, get_linked_list
 
 
 class Solution:

@@ -5,7 +5,7 @@ def quick_sort(arr):
     # 双向排序: 提高非随机输入的性能
     # 不需要额外的空间,在待排序数组本身内部进行排序
     # 基准值通过random随机选取
-    # 入参: 待排序数组, 数组开始索引 0, 数组结束索引 len(basicDS03_array)-1
+    # 入参: 待排序数组, 数组开始索引 0, 数组结束索引 len(basicDS02_array)-1
     if arr is None or len(arr) < 1:
         return arr
 

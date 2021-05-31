@@ -1,5 +1,5 @@
 # https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
-from basicDS02_linked_list.common_functions import ListNode
+from basicDS03_linked_list.common_functions import ListNode
 
 
 class Solution:
