@@ -15,15 +15,14 @@ class Solution:
         if not root:
             return
 
-        # 将root的左子树和右子树拉平。
+        # 1.将root的左子树和右子树拉平。
         self.flatten(root.left)
         self.flatten(root.right)
 
-        # 1.左右子树已经被拉平成一条链表
+        # 2.左右子树已经被拉平成一条链表, 将左子树作为右子树
         left = root.left
         right = root.right
 
-        # 2.将左子树作为右子树
         root.left = None
         root.right = left
 
