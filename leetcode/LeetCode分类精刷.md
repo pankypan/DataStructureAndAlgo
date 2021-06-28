@@ -283,11 +283,56 @@ class Solution:
 
 #### 解题思路
 
+函数签名如下：
 
+```python
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        pass
+```
+
+`inorder`数组中的元素分布有如下特点：
+
+![QQ截图20210627120113](assets/QQ截图20210627120113.png)
+
+找到根节点是很简单的，前序遍历的第一个值`preorder[0]`就是根节点的值，关键在于如何通过根节点的值，将`preorder`和`postorder`数组划分成两半，构造根节点的左右子树？
+
+对于代码中的`rootVal`和`index`变量，就是下图这种情况：
+
+![QQ截图20210627120330](assets/QQ截图20210627120330.png)
+
+对于`preorder`数组呢？如何确定左右数组对应的起始索引和终止索引？
+
+这个可以通过左子树的节点数推导出来，假设左子树的节点数为`leftSize`，那么`preorder`数组上的索引情况是这样的：
+
+![QQ截图20210627120620](assets/QQ截图20210627120620.png)
+
+看着这个图就可以把`preorder`对应的索引写进去了
 
 
 
 #### code
+
+```python
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+        
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        # base case
+        if len(preorder) <= 1:
+            return TreeNode(preorder[0]) if len(preorder) == 1 else None
+
+        root_val = preorder[0]
+        root = TreeNode(root_val)
+        root.left = self.buildTree(preorder[1: inorder.index(root_val) + 1], inorder[0: inorder.index(root_val)])
+        root.right = self.buildTree(preorder[inorder.index(root_val) + 1:], inorder[inorder.index(root_val) + 1:])
+        return root
+```
 
 
 
@@ -303,6 +348,356 @@ class Solution:
 
 #### 解题思路
 
+![QQ截图20210627121242](assets/QQ截图20210627121242.png)
+
+现在`postoder`和`inorder`对应的状态如下：
+
+![QQ截图20210627121321](assets/QQ截图20210627121321.png)
+
+
+
+
+
+#### code
+
+```python
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        if len(inorder) <= 1:
+            return TreeNode(inorder[0]) if len(inorder) == 1 else None
+
+        root_val = postorder[-1]
+        root = TreeNode(root_val)
+        root.left = self.buildTree(inorder[0: inorder.index(root_val)], postorder[0: inorder.index(root_val)])
+        root.right = self.buildTree(inorder[inorder.index(root_val) + 1:],
+                                    postorder[inorder.index(root_val): len(postorder) - 1])
+        return root
+```
+
+
+
+
+
+### [652. 寻找重复的子树](https://leetcode-cn.com/problems/find-duplicate-subtrees/)
+
+#### 题目
+
+![QQ截图20210627122745](assets/QQ截图20210627122745.png)
+
+
+
+#### 解题思路
+
+输入是一棵二叉树的根节点`root`，返回的是一个列表，里面装着若干个二叉树节点，这些节点对应的子树在原二叉树中是存在重复的。
+
+说起来比较绕，举例来说，比如输入如下的二叉树：
+
+<img src="assets/640.webp" alt="640" style="zoom:50%;" />
+
+首先，节点 4 本身可以作为一棵子树，且二叉树中有多个节点 4：
+
+<img src="assets/640.png" alt="640" style="zoom:50%;" />
+
+类似的，还存在两棵以 2 为根的重复子树：
+
+<img src="assets/640 (1).png" alt="640 (1)" style="zoom:50%;" />
+
+那么，我们返回的`List`中就应该有两个`TreeNode`，值分别为 4 和 2（具体是哪个节点都无所谓）。
+
+这题咋做呢？**还是老套路，先思考，对于某一个节点，它应该做什么**。
+
+比如说，你站在图中这个节点 2 上：
+
+<img src="assets/640 (1).webp" alt="640 (1)" style="zoom:50%;" />
+
+如果你想知道以自己为根的子树是不是重复的，是否应该被加入结果列表中，你需要知道什么信息？
+
+**你需要知道以下两点**：
+
+**1、以我为根的这棵二叉树（子树）长啥样**？
+
+**2、以其他节点为根的子树都长啥样**？
+
+先来思考，**我如何才能知道以自己为根的二叉树长啥样**？
+
+其实看到这个问题，就可以判断本题要使用「后序遍历」框架来解决：
+
+```java
+void traverse(TreeNode root) {
+    traverse(root.left);
+    traverse(root.right);
+    /* 解法代码的位置 */
+}
+```
+
+为什么？很简单呀，我要知道以自己为根的子树长啥样，是不是得先知道我的左右子树长啥样，再加上自己，就构成了整棵子树的样子？
+
+如果你还绕不过来，我再来举个非常简单的例子：计算一棵二叉树有多少个节点。这个代码应该会写吧：
+
+```python
+    def traverse(self, root: TreeNode) -> str:
+        """
+        返回二叉树的序列化
+        :param root:
+        :return:
+        """
+        # 对于空节点，可以用一个特殊字符表示
+        if not root: return '#'
+
+        # 将左右子树序列化成字符串
+        left_subtree_str = self.traverse(root.left)
+        right_subtree_str = self.traverse(root.right)
+
+        # 左右子树加上自己，就是以自己为根的二叉树序列化结果
+        subtree_str = left_subtree_str + '_' + right_subtree_str + '_' + str(root.val)
+        return subtree_str
+```
+
+这不就是标准的后序遍历框架嘛，和我们本题在思路上没啥区别对吧。
+
+现在，明确了要用后序遍历，那应该怎么描述一棵二叉树的模样呢？
+
+二叉树的前序/中序/后序遍历结果可以描述二叉树的结构。
+
+所以，我们可以通过拼接字符串的方式把二叉树序列化，看下代码：
+
+```python
+def traverse()
+```
+
+我们用非数字的特殊符`#`表示空指针，并且用字符`,`分隔每个二叉树节点值，这属于序列化二叉树的套路了，不多说。
+
+**这样，我们第一个问题就解决了，对于每个节点，递归函数中的`subTree`变量就可以描述以该节点为根的二叉树**。
+
+**现在我们解决第二个问题，我知道了自己长啥样，怎么知道别人长啥样**？这样我才能知道有没有其他子树跟我重复对吧。
+
+这很简单呀，我们借助一个外部数据结构，让每个节点把自己子树的序列化结果存进去，这样，对于每个节点，不就可以知道有没有其他节点的子树和自己重复了么？
+
+初步思路可以使用`HashSet`记录子树  但是呢，这有个问题，如果出现多棵重复的子树，结果集`res`中必然出现重复，而题目要求不希望出现重复。
+
+为了解决这个问题，可以把`HashSet`升级成`HashMap`，额外记录每棵子树的出现次数：
+
+**代码见下方code**
+
+
+
+#### code
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+class Solution:
+    def __init__(self):
+        self.memo = dict()
+        self.res_lis = list()
+
+    def findDuplicateSubtrees(self, root: TreeNode) -> List[TreeNode]:
+        self.traverse(root)
+        return self.res_lis
+
+    def traverse(self, root: TreeNode) -> str:
+        """
+        返回二叉树的序列化
+        :param root:
+        :return:
+        """
+        # 对于空节点，可以用一个特殊字符表示
+        if not root: return '#'
+
+        # 将左右子树序列化成字符串
+        left_subtree_str = self.traverse(root.left)
+        right_subtree_str = self.traverse(root.right)
+
+        # 左右子树加上自己，就是以自己为根的二叉树序列化结果
+        subtree_str = left_subtree_str + '_' + right_subtree_str + '_' + str(root.val)
+
+        freq = self.memo.get(subtree_str, 0)
+        # 多次重复也只会被加入结果集一次
+        if freq == 1:
+            self.res_lis.append(root)
+        # 给子树对应的出现次数加一
+        self.memo[subtree_str] = freq + 1
+        return subtree_str
+```
+
+
+
+### [102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+
+#### 题目
+
+![QQ截图20210627204438](assets/QQ截图20210627204438.png)
+
+
+
+#### 解题思路
+
+- **递归求解**
+
+  我们可以对该二叉树进行先序遍 历（根左右的顺序），同时，记录节点所在的层次level，并且对每一层都定义一个数组，然后将访问到 的节点值放入对应层的数组中。
+
+  假设给定二叉树为[3,9,20,null,null,15,7]，图解如下：
+
+  ![QQ截图20210627204727](assets/QQ截图20210627204727.png)
+
+  
+
+- **BFS求解**
+
+  我们可以使用Queue的数据结构。我们将root节点初始化进队列，通过消耗尾部，插入头 部的方式来完成BFS。
+
+  具体步骤如下图：
+
+  ![QQ截图20210627204832](assets/QQ截图20210627204832.png)
+
+  
+
+#### code
+
+**携带level参数的DFS解法：**
+
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        self.res = list()
+
+        self.dfs(root, 0)
+        return self.res
+    
+    def dfs(self, root: TreeNode, level: int):
+        if not root: return
+
+        if len(self.res) == level:
+            self.res.append([root.val])
+        else:
+            self.res[level].append(root.val)
+
+        self.dfs(root.left, level + 1)
+        self.dfs(root.right, level + 1)
+
+```
+
+**BFS解法：**
+
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        queue = list()
+        ret = list()
+
+        if not root: return ret
+
+        queue.append(root)
+        while queue:
+            temp_lis = []
+
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                temp_lis.append(node.val)
+
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            ret.append(temp_lis)
+        
+        return ret
+```
+
+
+
+
+
+### [222. 完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [814. 二叉树剪枝](https://leetcode-cn.com/problems/binary-tree-pruning/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [124. 二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [297. 二叉树的序列化与反序列化](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)
+
+#### 题目
+
+
+
+#### 解题思路
+
 
 
 #### code
@@ -312,6 +707,74 @@ class Solution:
 
 
 ## BinarySearchTree
+
+### [230. 二叉搜索树中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [538. 把二叉搜索树转换为累加树](https://leetcode-cn.com/problems/convert-bst-to-greater-tree/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [450. 删除二叉搜索树中的节点](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
+
+
+
+### [96. 不同的二叉搜索树](https://leetcode-cn.com/problems/unique-binary-search-trees/)
+
+#### 题目
+
+
+
+#### 解题思路
+
+
+
+#### code
 
 
 
